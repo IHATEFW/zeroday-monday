@@ -118,7 +118,10 @@ def cmd_run(args) -> int:
 
     text = data["post_text"].strip()
     first_comment = data["first_comment"].strip()
-    if not post_cfg.get("link_in_first_comment", True):
+    sources_in_comment = post_cfg.get("link_in_first_comment", True) and bool(first_comment)
+    if sources_in_comment:
+        text += "\n\nFuentes en el primer comentario 👇"
+    else:
         text += f"\n\n🔗 Fuente: {chosen.lead.link}"
 
     edition = len([h for h in history if h.get("urn")]) + 1
@@ -130,7 +133,7 @@ def cmd_run(args) -> int:
 
     hashtags = data["hashtags"][: int(post_cfg.get("hashtags", 3))]
     preview = (f"{text}\n\n" + " ".join("#" + h.lstrip('#') for h in hashtags)
-               + (f"\n\n---\n**Primer comentario:**\n\n{first_comment}" if post_cfg.get("link_in_first_comment", True) else ""))
+               + (f"\n\n---\n**Primer comentario:**\n\n{first_comment}" if sources_in_comment else ""))
     (outdir / "post.md").write_text(preview + "\n", encoding="utf-8")
     meta = {
         "date": now_local.isoformat(), "title": chosen.lead.title, "key": chosen.key,
@@ -158,14 +161,18 @@ def cmd_run(args) -> int:
     except Exception as e:  # sin imagen igual publicamos: mejor un post de texto que ninguno
         log.warning("no se pudo subir la imagen, publicando solo texto: %s", e)
     urn = li.post(text, hashtags, image_urn, alt=data.get("alt_text", ""))
-    if post_cfg.get("link_in_first_comment", True) and first_comment:
-        try:
-            li.comment(urn, first_comment)
-        except Exception as e:
-            log.warning("publicado, pero falló el primer comentario: %s", e)
-
     meta["urn"] = urn
     meta["url"] = LinkedIn.url_for(urn)
+    if sources_in_comment:
+        try:
+            li.comment(urn, first_comment)  # requiere Community Management API; con la app básica da 403
+        except Exception as e:
+            log.info("no se pudo comentar por API (%s); queda para pegarlo a mano", e)
+            (outdir / "comment.md").write_text(
+                f"Post publicado: {meta['url']}\n\nPega esto como **primer comentario**:\n\n```text\n{first_comment}\n```\n\n"
+                "Cierra este issue cuando lo hayas pegado.\n", encoding="utf-8")
+            gh_output("comment_file", str(outdir / "comment.md"))
+            gh_output("comment_date", day.isoformat())
     (outdir / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2, default=str) + "\n", encoding="utf-8")
     history.append({k: meta[k] for k in ("date", "title", "key", "cves", "links", "urn", "url")})
     state.save(history)

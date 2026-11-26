@@ -79,6 +79,14 @@ jobs:
             git push
           fi
 
+      - name: Pedir que pegue las fuentes como primer comentario
+        if: steps.run.outputs.comment_file != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FILE: ${{ steps.run.outputs.comment_file }}
+          DAY: ${{ steps.run.outputs.comment_date }}
+        run: gh issue create --title "💬 Pegar fuentes del post del $DAY" --body-file "$FILE" --assignee "$GITHUB_REPOSITORY_OWNER"
+
       - name: Avisar si el token de LinkedIn está por vencer
         if: steps.run.outputs.token_expiring == 'true'
         env:

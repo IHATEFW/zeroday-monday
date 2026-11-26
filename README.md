@@ -38,7 +38,7 @@ Nada de ISO, gobernanza ni leyes: bugs explotados, RCE sin autenticación, brech
 
 **5. Imagen** (`zdm/card.py`). Tarjeta tipográfica 1080×1350 (formato vertical, ocupa más feed) con titular, CVE y datos duros (CVSS / EPSS / KEV). Texto nítido, sin arte IA genérico.
 
-**6. Publicación** (`zdm/linkedin.py`). API REST actual de LinkedIn (Posts + Images). La fuente principal va al final del post (comentar por API requiere un producto de LinkedIn reservado a empresas).
+**6. Publicación** (`zdm/linkedin.py`). API REST actual de LinkedIn (Posts + Images). El post no lleva links (LinkedIn les baja el alcance): termina con "Fuentes en el primer comentario 👇". Como comentar por API requiere un producto de LinkedIn reservado a empresas, el workflow te abre un issue asignado a ti con las fuentes listas para copiar y pegar.
 
 ### Lo que lo diferencia de [linkedin-post-automation](https://github.com/jaraneda666/linkedin-post-automation)
 
