@@ -1,0 +1,58 @@
+# Fuentes de Zero-Day Monday.
+#
+# weight: cuánto confío en la fuente (1.0 = normal). Los labs de investigación
+# ofensiva pesan más que los medios generalistas porque publican el bug de
+# primera mano, con PoC y análisis técnico, no un refrito.
+#
+# kind: research | news | breach | ai | exploit | advisory
+# Para agregar una fuente basta con sumar una entrada RSS/Atom.
+
+feeds:
+  # --- Investigación ofensiva de primera mano (lo más valioso) ---
+  - { name: watchTowr Labs,        url: "https://labs.watchtowr.com/rss/",                          kind: research, weight: 1.5 }
+  - { name: Horizon3.ai,           url: "https://www.horizon3.ai/feed/",                             kind: research, weight: 1.3 }
+  - { name: Google Project Zero,   url: "https://googleprojectzero.blogspot.com/feeds/posts/default", kind: research, weight: 1.5 }
+  - { name: PortSwigger Research,  url: "https://portswigger.net/research/rss",                      kind: research, weight: 1.4 }
+  - { name: Assetnote,             url: "https://www.assetnote.io/resources/research/rss.xml",       kind: research, weight: 1.4 }
+  - { name: Wiz Research,          url: "https://www.wiz.io/feed/rss.xml",                           kind: research, weight: 1.2 }
+  - { name: Zero Day Initiative,   url: "https://www.zerodayinitiative.com/blog?format=rss",         kind: research, weight: 1.2 }
+  - { name: Trail of Bits,         url: "https://blog.trailofbits.com/feed/",                        kind: research, weight: 1.1 }
+  - { name: Rapid7,                url: "https://www.rapid7.com/blog/rss/",                          kind: research, weight: 1.1 }
+  - { name: Check Point Research,  url: "https://research.checkpoint.com/feed/",                     kind: research, weight: 1.1 }
+  - { name: Unit 42,               url: "https://unit42.paloaltonetworks.com/feed/",                 kind: research, weight: 1.1 }
+  - { name: Cisco Talos,           url: "https://blog.talosintelligence.com/rss/",                   kind: research, weight: 1.0 }
+  - { name: Huntress,              url: "https://www.huntress.com/blog/rss.xml",                     kind: research, weight: 1.0 }
+
+  # --- Supply chain (npm/PyPI/GitHub Actions comprometidos) ---
+  - { name: Socket,                url: "https://socket.dev/api/blog/feed.atom",                     kind: research, weight: 1.1 }
+  - { name: StepSecurity,          url: "https://www.stepsecurity.io/blog/rss.xml",                  kind: research, weight: 1.1 }
+  - { name: Aikido,                url: "https://www.aikido.dev/blog/rss.xml",                       kind: research, weight: 1.0 }
+
+  # --- Seguridad ofensiva en IA / LLMs ---
+  - { name: Embrace The Red,       url: "https://embracethered.com/blog/index.xml",                  kind: ai, weight: 1.4 }
+  - { name: Simon Willison (prompt injection), url: "https://simonwillison.net/tags/prompt-injection.atom", kind: ai, weight: 1.2 }
+
+  # --- Divulgación cruda: listas y exploits ---
+  - { name: oss-security,          url: "https://seclists.org/rss/oss-sec.rss",                      kind: advisory, weight: 1.0 }
+  - { name: Exploit-DB,            url: "https://www.exploit-db.com/rss.xml",                        kind: exploit, weight: 0.8 }
+
+  # --- Medios (sirven sobre todo para medir cobertura: si 4 medios hablan de lo mismo, es grande) ---
+  - { name: BleepingComputer,      url: "https://www.bleepingcomputer.com/feed/",                    kind: news, weight: 1.0 }
+  - { name: The Hacker News,       url: "https://feeds.feedburner.com/TheHackersNews",               kind: news, weight: 0.9 }
+  - { name: The Record,            url: "https://therecord.media/feed",                              kind: news, weight: 0.9 }
+  - { name: SecurityWeek,          url: "https://www.securityweek.com/feed/",                        kind: news, weight: 0.8 }
+  - { name: Krebs on Security,     url: "https://krebsonsecurity.com/feed/",                         kind: news, weight: 1.1 }
+  - { name: DataBreaches.net,      url: "https://databreaches.net/feed/",                            kind: breach, weight: 0.9 }
+  - { name: SANS ISC,              url: "https://isc.sans.edu/rssfeed_full.xml",                     kind: news, weight: 0.8 }
+
+# Fuentes estructuradas (APIs), se activan/desactivan acá.
+apis:
+  cisa_kev: true          # Vulnerabilidades explotadas activamente (señal de oro)
+  epss: true              # Probabilidad de explotación (FIRST.org)
+  nvd: true               # CVSS (usa NVD_API_KEY si existe, si no va más lento)
+  hibp: true              # Brechas nuevas cargadas en Have I Been Pwned
+  hacker_news: true       # Lo que la comunidad técnica está votando
+  github_advisories: true # GHSA críticos de la semana
+
+# Ventana de búsqueda en días.
+lookback_days: 8

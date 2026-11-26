@@ -1,0 +1,22 @@
+# Ajustes generales. Todo lo sensible (tokens) va en GitHub Secrets, nunca acá.
+
+timezone: America/Santiago
+publish_hour: 7          # el workflow corre dos veces (por el horario de verano) y solo publica a esta hora local
+publish_minute: 30
+
+brand:
+  series: "ZERO-DAY MONDAY"      # aparece en la imagen
+  handle: "github.com/IHATEFW"   # firma en la esquina de la imagen
+
+post:
+  max_chars: 1300            # LinkedIn corta en ~210 con "ver más": el gancho tiene que vivir ahí
+  radar_items: 2             # mini-lista "también en el radar" (0 para desactivar)
+  hashtags: 3
+  link_in_first_comment: true  # LinkedIn castiga los links en el cuerpo; lo dejamos en el 1er comentario
+
+llm:
+  model: claude-opus-5-5
+  effort: high
+
+# Cuántos candidatos ve el modelo editor para elegir la noticia de la semana.
+shortlist_size: 18
