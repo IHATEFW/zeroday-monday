@@ -12,7 +12,6 @@ Nada de ISO, gobernanza ni leyes: bugs explotados, RCE sin autenticación, brech
 
 ```
  27 feeds + 6 APIs ──► agrupar ──► puntuar ──► shortlist (18) ──► editor IA ──► post + imagen ──► LinkedIn
-                                                                                                     └─► link en el 1er comentario
 ```
 
 **1. Recolección.** Prioriza fuentes de primera mano en lugar de medios que repiten la misma nota:
@@ -39,7 +38,7 @@ Nada de ISO, gobernanza ni leyes: bugs explotados, RCE sin autenticación, brech
 
 **5. Imagen** (`zdm/card.py`). Tarjeta tipográfica 1080×1350 (formato vertical, ocupa más feed) con titular, CVE y datos duros (CVSS / EPSS / KEV). Texto nítido, sin arte IA genérico.
 
-**6. Publicación** (`zdm/linkedin.py`). API REST actual de LinkedIn (Posts + Images). Las fuentes van en el **primer comentario**, porque LinkedIn reduce el alcance de los posts con links.
+**6. Publicación** (`zdm/linkedin.py`). API REST actual de LinkedIn (Posts + Images). La fuente principal va al final del post (comentar por API requiere un producto de LinkedIn reservado a empresas).
 
 ### Lo que lo diferencia de [linkedin-post-automation](https://github.com/jaraneda666/linkedin-post-automation)
 
@@ -51,7 +50,6 @@ Nada de ISO, gobernanza ni leyes: bugs explotados, RCE sin autenticación, brech
 | Contexto para escribir | Título + resumen del RSS | Artículo completo + señales (KEV, EPSS, CVSS, fuentes) |
 | Post | Bilingüe ES+EN, hasta ~2.200 caracteres | Un idioma, ≤1.300 caracteres, gancho pensado para el corte de "ver más" |
 | Imagen | FLUX/Stable Diffusion: ilustración genérica | Tarjeta con datos duros, legible en el celular |
-| Links | En el cuerpo del post | En el primer comentario |
 | Voz | Prompt fijo dentro del workflow | `config/style.md` editable, primera persona, lista de muletillas de IA prohibidas |
 | Horario | Hora fija del servidor | 07:30 en `America/Santiago`, con el cambio de horario resuelto |
 

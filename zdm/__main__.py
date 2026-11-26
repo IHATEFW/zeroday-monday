@@ -119,7 +119,7 @@ def cmd_run(args) -> int:
     text = data["post_text"].strip()
     first_comment = data["first_comment"].strip()
     if not post_cfg.get("link_in_first_comment", True):
-        text += f"\n\nFuente: {chosen.lead.link}"
+        text += f"\n\n🔗 Fuente: {chosen.lead.link}"
 
     edition = len([h for h in history if h.get("urn")]) + 1
     day = now_local.date()

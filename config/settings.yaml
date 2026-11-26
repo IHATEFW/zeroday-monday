@@ -12,7 +12,9 @@ post:
   max_chars: 1300            # LinkedIn corta en ~210 con "ver más": el gancho tiene que vivir ahí
   radar_items: 2             # mini-lista "también en el radar" (0 para desactivar)
   hashtags: 3
-  link_in_first_comment: true  # LinkedIn castiga los links en el cuerpo; lo dejamos en el 1er comentario
+  # Comentar por API requiere el producto "Community Management API" (solo para empresas aprobadas).
+  # Con la app básica (Share on LinkedIn) da 403, así que la fuente va al final del post.
+  link_in_first_comment: false
 
 llm:
   model: claude-opus-5-5

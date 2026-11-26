@@ -4,6 +4,7 @@ from __future__ import annotations
 import concurrent.futures as cf
 import html
 import logging
+import os
 import re
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
@@ -181,7 +182,9 @@ def ghsa_items(since: datetime) -> list[Item]:
         r = HTTP.get("https://api.github.com/advisories", timeout=25, params={
             "severity": "critical", "type": "reviewed", "per_page": 50,
             "published": f">={since.date().isoformat()}"},
-            headers={"Accept": "application/vnd.github+json"})
+            headers={"Accept": "application/vnd.github+json",
+                     # Sin token, la IP compartida de los runners agota el límite de 60 req/h.
+                     **({"Authorization": f"Bearer {tok}"} if (tok := os.getenv("GITHUB_TOKEN")) else {})})
         r.raise_for_status()
         advisories = r.json()
     except (requests.RequestException, ValueError) as e:
