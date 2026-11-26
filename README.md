@@ -120,4 +120,4 @@ Cada post publicado queda en `posts/AAAA-MM-DD/` (texto, imagen y metadatos) y e
 - **Si algo falla:** si no se puede subir la imagen, igual publica solo el texto; si falla la publicación, el job queda en rojo y GitHub te manda un correo.
 
 ## Licencia
-MIT. Fuentes tipográficas: Inter y JetBrains Mono (SIL Open Font License, en `assets/fonts/`).
+[Política de privacidad](PRIVACY.md) · MIT. Fuentes tipográficas: Inter y JetBrains Mono (SIL Open Font License, en `assets/fonts/`).
