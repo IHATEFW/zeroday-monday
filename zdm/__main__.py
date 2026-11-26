@@ -186,7 +186,7 @@ def cmd_card_demo(_args) -> int:
         "kicker": "EXPLOTADA ACTIVAMENTE",
         "headline": "Un request sin autenticar y tienes shell en el firewall",
         "subject": "FortiWeb · CVE-2025-64446",
-        "severity": "critical",
+        "category": "exploit",
         "stats": [{"label": "CVSS", "value": "9.8"}, {"label": "EPSS", "value": "94%"}, {"label": "CISA KEV", "value": "SÍ"}],
     }, ROOT / "assets" / "example-card.png", edition=1, handle="github.com/IHATEFW")
     print(out)

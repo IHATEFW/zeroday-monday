@@ -31,12 +31,15 @@ SCHEMA = {
         "card": {
             "type": "object",
             "additionalProperties": False,
-            "required": ["kicker", "headline", "subject", "severity", "stats"],
+            "required": ["kicker", "headline", "subject", "category", "stats"],
             "properties": {
                 "kicker": {"type": "string", "description": "etiqueta corta en MAYÚSCULAS, máx 24 caracteres. Ej: EXPLOTADA ACTIVAMENTE, 0-DAY, BRECHA, IA OFENSIVA, SUPPLY CHAIN"},
                 "headline": {"type": "string", "description": "titular de impacto en español, máx 70 caracteres"},
                 "subject": {"type": "string", "description": "producto/organización afectada + CVE si hay. Máx 40 caracteres"},
-                "severity": {"type": "string", "enum": ["critical", "high", "medium"]},
+                "category": {
+                    "type": "string", "enum": ["exploit", "ai", "breach", "supply_chain"],
+                    "description": "define el color de la imagen. exploit: vulnerabilidad/0-day/RCE/bypass; ai: ataque a o con IA/LLMs/agentes; breach: brecha o filtración de datos, ransomware con robo de datos; supply_chain: paquete, dependencia, extensión o pipeline comprometido",
+                },
                 "stats": {
                     "type": "array",
                     "description": "0-3 datos duros SOLO de los datos entregados (CVSS, EPSS, KEV, registros, servidores expuestos)",

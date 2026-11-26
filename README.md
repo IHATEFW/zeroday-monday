@@ -36,7 +36,9 @@ Nada de ISO, gobernanza ni leyes: bugs explotados, RCE sin autenticación, brech
 
 **4. Editor IA** (`zdm/writer.py`). Claude recibe la shortlist con el **texto completo** de los mejores artículos y las señales, elige la noticia que un pentester senior consideraría la más importante y escribe el post siguiendo [`config/style.md`](config/style.md). La salida es JSON validado por esquema: no hay que parsear texto libre.
 
-**5. Imagen** (`zdm/card.py`). Tarjeta tipográfica 1080×1350 (formato vertical, ocupa más feed) con titular, CVE y datos duros (CVSS / EPSS / KEV). Texto nítido, sin arte IA genérico.
+**5. Imagen** (`zdm/card.py`). Tarjeta tipográfica 1080×1350 (formato vertical, ocupa más feed) con titular, CVE y datos duros (CVSS / EPSS / KEV). Texto nítido, sin arte IA genérico. El color cambia según el tipo de noticia: **rojo** 0-day/RCE, **violeta** IA ofensiva, **ámbar** brechas, **verde** supply chain.
+
+<p align="center"><img src="assets/categories.png" alt="Colores por categoría"></p>
 
 **6. Publicación** (`zdm/linkedin.py`). API REST actual de LinkedIn (Posts + Images). El post no lleva links (LinkedIn les baja el alcance): termina con "Fuentes en el primer comentario 👇". Como comentar por API requiere un producto de LinkedIn reservado a empresas, el workflow te abre un issue asignado a ti con las fuentes listas para copiar y pegar.
 

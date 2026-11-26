@@ -16,7 +16,13 @@ BG = (9, 12, 17)
 FG = (240, 242, 245)
 MUTED = (125, 135, 150)
 GRID = (22, 28, 36)
-ACCENT = {"critical": (255, 59, 70), "high": (255, 138, 0), "medium": (245, 217, 10)}
+# Color por tipo de noticia: el feed se ve variado y el color anticipa el tema.
+ACCENT = {
+    "exploit": (255, 59, 70),        # 0-days, RCE, bypass, vulnerabilidades explotadas
+    "ai": (168, 85, 247),            # IA ofensiva, ataques a LLMs y agentes
+    "breach": (245, 166, 35),        # brechas y filtraciones de datos
+    "supply_chain": (34, 211, 138),  # paquetes troyanizados, CI/CD comprometido
+}
 MESES = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"]
 
 
@@ -53,7 +59,7 @@ def fit_headline(draw, text: str, width: int, max_h: int) -> tuple[ImageFont.Fre
 def render(card: dict, out: Path, edition: int | None = None, day: date | None = None,
            series: str = "ZERO-DAY MONDAY", handle: str = "") -> Path:
     day = day or date.today()
-    accent = ACCENT.get(card.get("severity", "critical"), ACCENT["critical"])
+    accent = ACCENT.get(card.get("category", "exploit"), ACCENT["exploit"])
 
     img = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(img)
