@@ -89,7 +89,9 @@ def render(card: dict, out: Path, edition: int | None = None, day: date | None =
     # Titular.
     y += 110
     stats = card.get("stats", [])[:3]
-    max_h = 560 if stats else 720
+    stats_top = H - PAD - 120 - 210
+    # Espacio del titular = hasta los stats (o el pie), dejando lugar para la línea del sujeto.
+    max_h = (stats_top if stats else H - PAD - 160) - y - 130
     hf, lines, lh = fit_headline(d, card.get("headline", ""), W - 2 * PAD, max_h)
     for line in lines:
         d.text((PAD, y), line, font=hf, fill=FG)
@@ -103,7 +105,7 @@ def render(card: dict, out: Path, edition: int | None = None, day: date | None =
 
     # Stats.
     if stats:
-        top = H - PAD - 120 - 210
+        top = stats_top
         gap = 24
         bw = (W - 2 * PAD - gap * (len(stats) - 1)) // len(stats)
         vf_size = 76 if len(stats) < 3 else 64

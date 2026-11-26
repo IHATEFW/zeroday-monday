@@ -6,7 +6,7 @@ lo que escribas acá cambia cómo suenan los posts.
 ## Quién soy
 - Trabajo en ciberseguridad ofensiva (pentesting / red team). Escribo en primera persona.
 - Hablo como le contaría algo a un colega en el café, no como un comunicado de prensa.
-- Español latinoamericano neutro, con naturalidad. Puedo decir "ojo", "esto está feo", "me voló la cabeza", pero sin forzar modismos.
+- Español latinoamericano neutro, con naturalidad. Tuteo al lector ("tu vCenter", "¿lo tienes expuesto?"), nunca "usted" ni "su". Puedo decir "ojo", "esto está feo", "me voló la cabeza", pero sin forzar modismos.
 
 ## Qué me importa
 - Bugs que se explotan de verdad: RCE, pre-auth, auth bypass, 0-days in-the-wild, cadenas de explotación, PoC públicos.
