@@ -1,0 +1,62 @@
+{
+  "date": "2026-11-26T00:26:00.852092-03:00",
+  "title": "CVE-2026-123890 | VMware vCenter Directory Service Authentication Bypass Vulnerability",
+  "key": "CVE-2026-123890",
+  "cves": [
+    "CVE-2026-123890",
+    "CVE-2026-123903"
+  ],
+  "links": [
+    "https://horizon3.ai/attack-research/vulnerabilities/cve-2026-123890/",
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-123890",
+    "https://www.rapid7.com/blog/post/etr-cve-2026-123903-critical-vmware-directory-service-authentication-bypass-affects-vcenter",
+    "https://www.rapid7.com/blog/post/ra-rapid7-analysis-vmware-vcenter-srp-authentication-bypass-to-root-cve-2026-123890",
+    "https://www.rapid7.com/blog/post/etr-cve-2026-123890-critical-authentication-bypass-vmware-vcenter",
+    "https://thehackernews.com/2026/11/vmware-vcenter-hit-by-another-critical.html",
+    "https://thehackernews.com/2026/11/china-linked-hackers-exploit-critical.html",
+    "https://thehackernews.com/2026/11/critical-vmware-vcenter-flaw-cvss-98.html"
+  ],
+  "sources": [
+    "CISA KEV",
+    "Horizon3.ai",
+    "Rapid7",
+    "The Hacker News"
+  ],
+  "signals": {
+    "coverage": 4,
+    "age_days": 0.2,
+    "kev": [
+      "CVE-2026-123890"
+    ],
+    "epss": 0.05,
+    "cvss": 9.8
+  },
+  "why": "Es un 0-day explotado in-the-wild por un actor estatal en vCenter, con CVSS 9.8, en KEV, pre-auth hasta admin SSO y con mecanismo técnico documentado. NGINX es enorme, pero no hay explotación activa confirmada en el material.",
+  "radar": [
+    "Unauthenticated Remote Code Execution in NGINX: CVE-2026-123633 and CVE-2026-123007",
+    "Project MONAI MONAI Label: Project MONAI MONAI Label Path Traversal Vulnerability"
+  ],
+  "chars": 1329,
+  "card": {
+    "kicker": "0-DAY EXPLOTADO",
+    "headline": "Bypass sin credenciales da admin total de vCenter",
+    "subject": "VMware vCenter · CVE-2026-123890",
+    "severity": "critical",
+    "stats": [
+      {
+        "label": "CVSS",
+        "value": "9.8"
+      },
+      {
+        "label": "CISA KEV",
+        "value": "Sí (20/11/2026)"
+      },
+      {
+        "label": "EPSS",
+        "value": "0.05"
+      }
+    ]
+  },
+  "urn": "urn:li:share:7531559344920866816",
+  "url": "https://www.linkedin.com/feed/update/urn:li:share:7531559344920866816/"
+}
